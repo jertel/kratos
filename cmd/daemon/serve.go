@@ -83,7 +83,7 @@ func ServePublic(r driver.Registry, wg *sync.WaitGroup, cmd *cobra.Command, args
 
 	r.RegisterPublicRoutes(ctx, router)
 	n.Use(reqlog.NewMiddlewareFromLogger(l, "public#"+c.SelfPublicURL(nil).String()))
-	n.Use(sqa(cmd, r))
+//	n.Use(sqa(cmd, r))
 	n.Use(r.PrometheusManager())
 
 	if tracer := r.Tracer(ctx); tracer.IsLoaded() {
@@ -128,7 +128,7 @@ func ServeAdmin(r driver.Registry, wg *sync.WaitGroup, cmd *cobra.Command, args 
 	router := x.NewRouterAdmin()
 	r.RegisterAdminRoutes(ctx, router)
 	n.Use(reqlog.NewMiddlewareFromLogger(l, "admin#"+c.SelfPublicURL(nil).String()))
-	n.Use(sqa(cmd, r))
+//	n.Use(sqa(cmd, r))
 	n.Use(r.PrometheusManager())
 
 	if tracer := r.Tracer(ctx); tracer.IsLoaded() {
